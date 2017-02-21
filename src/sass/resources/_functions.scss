@@ -1,0 +1,44 @@
+/* MISC MIXINS
+	========================================================================== */
+
+@mixin touch() {
+	/*This mixin is intended to be used in a nested block ! It uses & */
+	&:hover,
+	.no-touch &:hover,
+	.touch &:active {
+		@content;
+	}
+}
+@mixin pointerHover_touchActive() {
+	.no-touchevents &:hover {
+		@content;
+	}
+	.touchevents &:active {
+		@content;
+	}
+}
+@mixin pointerHover() {
+	.no-touchevents &:hover {
+		@content;
+	}
+}
+@mixin active() {
+	/*This mixin is intended to be used in a nested block ! It uses & */
+	.no-touchevents &:active,
+	.touchevents &:active {
+		@content;
+	}
+}
+
+@mixin line-height($fontsize, $lineheight) {
+	//takes in a fontsize and outputs the corresponding unitless line height
+	line-height: $lineheight / $fontsize;
+}
+
+@function strip-unit($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+
+	@return $number;
+}

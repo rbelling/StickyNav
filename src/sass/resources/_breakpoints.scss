@@ -1,0 +1,58 @@
+$grid-col-count: 20;
+// Responsive breakpoints
+$xsmall_px: 320;
+$small_px: 414;
+$medium_px: 680;
+$large_px: 960;
+$xlarge_px: 1100;
+$xxlarge_px: 1280;
+
+$viewport-height: 1280;
+$col_desktop: $xxlarge_px / $grid-col-count; // desktop column - width in pixels in the PSD
+
+// Responsive utilities
+@function vw($px, $targetviewport) {
+	@return ($px * 100) / $targetviewport + vw;
+}
+
+@function span-cols($cols, $maxWidth: false) {
+	@if $maxWidth {
+		$width: $xxlarge_px;
+		$retVal: (($width / $grid-col-count) * $cols);
+		@return $retVal + px;
+	}
+	@else {
+		$width: 100;
+		$retVal: (($width / $grid-col-count) * $cols);
+		@return $retVal + vw;
+	}
+}
+
+@function h-pc($cols) {
+	$width: 100;
+	$retVal: (($width / $grid-col-count) * $cols);
+	@return $retVal * 1%;
+}
+
+@function v-pc($px) {
+	@return 100*1%*($px / $viewport-height);
+}
+
+/*----------  Rick's responsive calc function - watch out: http://caniuse.com/#feat=calc.   ----------*/
+/**
+ * Takes in a minimum and a maximum size in pixels, and interpolates between two viewports.
+ * Takes in a property (e.g. font-size), min/max sizes, and optional lower range and upper range
+ * by default it ranges from tablet to max width
+ */
+@mixin calc-value($property, $min-size, $max-size, $lower-range: $medium-px, $upper-range: $xxlarge-px) {
+	$diff-size: strip-unit($max-size - $min-size); //e.g. 13
+	$diff-range: $upper-range - $lower-range;
+	#{$property}: calc(#{$min-size} + #{$diff-size} * ((100vw - #{$lower-range}px) / #{$diff-range}));
+
+	@include width-under($lower-range) {
+		#{$property}: $min-size;
+	}
+	@include width-over($upper-range) {
+		#{$property}: $max-size;
+	}
+}

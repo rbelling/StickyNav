@@ -1,0 +1,87 @@
+/* MEDIA QUERIES
+   ========================================================================== */
+
+@mixin small() {
+  @media only screen and (max-width: $small_px + px) {
+    @content;
+  }
+}
+
+@mixin medium() {
+  @media only screen and (min-width: $small_px+1 + px) and (max-width: $medium_px + px) {
+    @content;
+  }
+}
+
+@mixin large() {
+  @media only screen and (min-width: $medium_px+1 + px) and (max-width: $large_px + px) {
+    @content;
+  }
+}
+
+@mixin xlarge() {
+  @media only screen and (min-width: $large_px+1 + px) and (max-width: $xlarge_px + px) {
+    @content;
+  }
+}
+
+@mixin xxlarge() {
+  @media only screen and (min-width: $xlarge_px+1 + px) {
+    @content;
+  }
+}
+
+@mixin max-width() {
+  @media only screen and (min-width: $xxlarge_px+1 + px) {
+    @content;
+  }
+}
+
+@mixin medium-down() {
+  @media only screen and (max-width: $medium_px + px) {
+    @content;
+  }
+}
+
+@mixin medium-up() {
+  @media only screen and (min-width: $small_px+1 + px) {
+    @content;
+  }
+}
+
+@mixin large-down() {
+  @media only screen and (max-width: $large_px + px) {
+    @content;
+  }
+}
+
+@mixin large-up() {
+  @media only screen and (min-width: $medium_px+1 + px) {
+    @content;
+  }
+}
+
+@mixin xlarge-up() {
+  @media only screen and (min-width: $large_px+1 + px) {
+    @content;
+  }
+}
+
+@mixin width-over($amt) {
+  @media only screen and (min-width: $amt+1 + px) {
+    @content;
+  }
+}
+
+@mixin width-under($amt) {
+  @media only screen and (max-width: $amt + px) {
+    @content;
+  }
+}
+
+@mixin short-rectangle {
+  //e.g. macbook air 11, macbook air 13 - http://www.apple.com/macbook-air/specs.html
+  @media screen and (min-aspect-ratio: 1440/900) {
+    @content;
+  }
+}

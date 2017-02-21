@@ -1,0 +1,29 @@
+/*----------  variables  ----------*/
+$ease-out-expo: cubic-bezier(.190, 1.000, .220, 1.000); /* easeOutExpo */
+$ease-in-out: ease-in-out;
+$duration-std: .3s;
+$duration-slow: .65s;
+$default-ease: $ease-out-expo;
+$default-transition: all $duration-std $default-ease;
+
+/*----------  mixins and placeholders  ----------*/
+%grow {
+  transform: scale3d(1.05, 1.05, 1.05) translateX(0%);
+}
+%depressed {
+  transform: scale3d(.95, .95, .95) translateX(0%);
+}
+@mixin growAndShrink($bg-color: transparent) {
+  cursor: pointer;
+
+  @include pointerHover {
+    background-color: darken($bg-color, 5%);
+
+    @extend %grow;
+  }
+  @include active {
+    background-color: darken($bg-color, 5%);
+
+    @extend %depressed;
+  }
+}

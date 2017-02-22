@@ -1,28 +1,150 @@
+//mobile
+$height-search: 50px;
+$height-carousel: 40px;
+$height-topbar: 50px;
+$nav-height: $height-topbar + $height-search + $height-carousel;
 
-$nav-height: 75px;
+//desktop
+$height-search--desktop: 55px;
+$height-carousel--desktop: 55px;
+$height-topbar--desktop: 55px;
+$nav-height--desktop: $height-topbar--desktop + $height-search--desktop + $height-carousel--desktop;
+
+//vars
+$icon-pad: 10px;
+
+//Container
+.nav-container {
+  background-color: $black;
+}
 .nav, .nav-spacer {
   height: $nav-height;
+  @include widerScreen {
+    height: $nav-height--desktop;
+  }
 }
 .nav {
   @extend %u-gpu;
   background-color: $black;
-  width: 100vw;
   opacity: 0.85;
   position: fixed;
+  padding: 0 20px;
   z-index: $z-index-1;
+  color: $mineshaft;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: $superwide_px + px;
 }
 .nav-spacer {
   pointer-events: none;
   opacity: 0;
 }
 
-// Misc rules not related to the nav sticky behavior
-%u-center-content {
-  display: flex;
-  justify-content: center;
+.nav__account, .nav__fav, .nav__notifications, .nav__logo, .nav__cart {
+  height: $height-topbar;
+  display: inline-flex;
   align-items: center;
+  @include widerScreen {
+    height: $height-topbar--desktop;
+  }
 }
-%u-gpu {
-  // forces gpu rendering
-  transform: translateZ(0);
+
+//Account
+.nav__account {
+  @include widerScreen {
+    order: 3;
+  }
+}
+
+//Notifications
+.nav__notifications {
+  display: none;
+  @include widerScreen {
+    display: inline-flex;
+    order: 4;
+  }
+}
+
+//Favorites
+.nav__fav {
+  margin-left: $icon-pad;
+  margin-right: auto;
+  @include widerScreen {
+    order: 5;
+    margin-right: 0;
+  }
+}
+
+//Cart
+.nav__cart {
+  @include widerScreen {
+    order: 6;
+  }
+}
+//Logo
+.nav__logo {
+  @include smallerScreen {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  justify-content: center;
+  .logo {
+    height: 30px;
+  }
+  @include widerScreen {
+    order: 1;
+  }
+}
+//Search
+.nav__search {
+  border-radius: 5px;
+  width: 100%;
+  height: $height-search;
+  padding: 10px;
+  background-color: white;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  @include widerScreen() {
+    width: auto;
+    flex-grow: 1;
+    height: $height-search--desktop;
+    order: 2;
+    margin: 0 $icon-pad;
+  }
+}
+
+//Carousel
+.nav__carousel {
+  @extend %u-center-content;
+  justify-content: space-between;
+  max-width: span-cols(8, true);
+  height: $height-carousel;
+  @include widerScreen() {
+    height: $height-carousel--desktop;
+    order: 7;
+    width: 100vw;
+  }
+  overflow: hidden;
+}
+.nav__category {
+  position: relative;
+  height: 100%;
+  margin-right: $icon-pad;
+  @extend %u-center-content;
+  &.is-active {
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: gold;
+      height: 5px;
+      width: 100%;
+    }
+  }
 }

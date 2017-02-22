@@ -1,6 +1,17 @@
+// Misc rules not related to the nav sticky behavior
+%u-center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+%u-gpu {
+  // forces gpu rendering
+  transform: translateZ(0);
+}
+
 body {
   min-height: 100vh;
-  background-color: #AEAEAE;
+  background-color: $white;
   color: white;
 }
 .rest {
@@ -24,3 +35,9 @@ body {
     }
   }
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+

@@ -11,20 +11,16 @@ $nav-height: 75px;
 }
 .nav {
   @extend %u-center-content;
+  @extend %u-gpu;
   background-color: #769897;
   color: white;
   font-size: 35px;
   opacity: 0.85;
   top: 0;
-  //will-change: scroll-position;
-  transform: translateZ(0);
-}
-.nav--fixed {
   position: fixed;
-  z-index: 1;
+  z-index: $z-index-1;
 }
 .nav-spacer {
-  position: absolute;
   pointer-events: none;
   opacity: 0;
 }
@@ -41,6 +37,11 @@ $nav-height: 75px;
   justify-content: center;
   align-items: center;
 }
+%u-gpu {
+  // forces gpu rendering
+  transform: translateZ(0);
+}
+
 body {
   overflow-x: hidden;
   margin: 0;
@@ -48,7 +49,6 @@ body {
   width: 100vw;
   min-height: 100vh;
   @extend %u-center-content;
-  padding: 20px 0;
 }
 .content {
   position: relative;

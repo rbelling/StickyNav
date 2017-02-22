@@ -5,26 +5,32 @@
 
 $width: 320px;
 $nav-height: 75px;
-.nav {
-  @extend %u-center-content;
+.nav, .nav-spacer {
   width: $width;
   height: $nav-height;
-  top: -$nav-height;
-  transition: top 0.5s;
-
+}
+.nav {
+  @extend %u-center-content;
   background-color: #769897;
   color: white;
   font-size: 35px;
   opacity: 0.85;
+  top: 0;
 }
 .nav--fixed {
   position: fixed;
-  top: 0;
   z-index: 1;
 }
-.nav-spacer--expanded {
-  height: $nav-height;
+.nav-spacer {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
 }
+.nav-spacer--expanded {
+  position: relative; //push down the rest of the page by switching from absolute to relative;
+}
+
+
 
 
 // Misc rules not related to the nav sticky behavior

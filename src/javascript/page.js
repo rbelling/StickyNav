@@ -1,17 +1,26 @@
-import '../sass/app.scss'; //import the main css file into our js bundle
+import 'intersection-observer';
 
+import '../sass/app.scss'; //import the main css file into our js bundle
+const THRESHOLD = 1; // 10% threshold;
 (() => {
   const nav = document.querySelector('.nav');
   const spacer = document.querySelector('.nav-spacer');
-  window.addEventListener("scroll", () => {
-    if (window.pageYOffset > 100) {
-      // how's this going to behave with responsive nav heights?
-      nav.classList.add("nav--fixed");
-      spacer.classList.add("nav-spacer--expanded");
-    }
-    if (window.pageYOffset <= 20) {
-      nav.classList.remove("nav--fixed");
-      spacer.classList.remove("nav-spacer--expanded");
-    }
-  });
+
+  const observePosition = () => {
+    // https://jeremenichelli.github.io/2016/04/quick-introduction-to-the-intersection-observer-api/
+    const onChange = (changes) => {
+      const status = changes[0].intersectionRatio < THRESHOLD;
+      nav.classList[(status) ? 'add' : 'remove']("nav--fixed");
+      spacer.classList[(status) ? 'add' : 'remove']("nav-spacer--expanded");
+    };
+    let observer = new IntersectionObserver(onChange, {
+      threshold: THRESHOLD, //100%
+      root: null,
+    });
+    observer.observe(spacer);
+  };
+  observePosition();
+
 })();
+
+

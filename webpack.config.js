@@ -32,7 +32,7 @@ const devConfig = {
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       // https://www.npmjs.com/package/html-webpack-plugin
-      template: 'src/templates/index.html',
+      template: 'src/templates/index.handlebars',
       minify: {
         removeComments: true,
         collapseWhitespace: true,

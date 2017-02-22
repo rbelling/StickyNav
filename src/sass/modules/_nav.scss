@@ -1,0 +1,28 @@
+
+$nav-height: 75px;
+.nav, .nav-spacer {
+  height: $nav-height;
+}
+.nav {
+  @extend %u-gpu;
+  background-color: $black;
+  width: 100vw;
+  opacity: 0.85;
+  position: fixed;
+  z-index: $z-index-1;
+}
+.nav-spacer {
+  pointer-events: none;
+  opacity: 0;
+}
+
+// Misc rules not related to the nav sticky behavior
+%u-center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+%u-gpu {
+  // forces gpu rendering
+  transform: translateZ(0);
+}

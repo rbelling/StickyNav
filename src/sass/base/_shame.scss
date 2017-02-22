@@ -1,5 +1,26 @@
 body {
-  background-color: #373737;
+  min-height: 100vh;
+  background-color: #AEAEAE;
   color: white;
+}
+.rest {
+  padding: 20px;
+  box-sizing: border-box;
+}
+.block {
+  width: 100%;
+  height: 125px;
+  background-color: #feffbb;
+  margin-bottom: 20px;
+  position: relative;
+  color: #ff5555;
   font-size: 30px;
+  @extend %u-center-content;
+  @for $i from 1 through 20 {
+    &:nth-of-type(#{$i}) {
+      &:after {
+        content: '#{$i}';
+      }
+    }
+  }
 }

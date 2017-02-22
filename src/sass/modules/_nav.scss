@@ -1,5 +1,5 @@
 //mobile
-$height-search: 45px;
+$height-search: 50px;
 $height-carousel: 45px;
 $height-topbar: 55px;
 $nav-height: $height-topbar + $height-search + $height-carousel;
@@ -14,6 +14,7 @@ $icon-pad: 13px;
 
 //Container
 .nav, .nav-spacer {
+  @extend %u-gpu;
   @extend %transition-collapse;
   height: $nav-height;
   @include widerScreen {
@@ -27,8 +28,8 @@ $icon-pad: 13px;
   }
 }
 .nav {
-  @extend %u-gpu;
   background-color: $black;
+  overflow: hidden;
   opacity: 0.85;
   position: fixed;
   padding: 0 20px;
@@ -37,6 +38,7 @@ $icon-pad: 13px;
   width: 100%;
 }
 .nav__content {
+  @extend %u-gpu;
   background-color: $black;
   display: flex;
   justify-content: flex-start;
@@ -175,7 +177,11 @@ $icon-pad: 13px;
 
 // Animations
 %transition-collapse {
-  transition: height .3s, transform .3s, opacity .25s;
+  $delta: .1s;
+  transition: height .35s, transform .25s , opacity .35s;
+  @include smallerScreen {
+    transition: height .35s + $delta, transform .25s , opacity .35s;
+  }
 }
 .nav--collapsible-mobile, .nav__carousel, .nav__search {
   @extend %transition-collapse;
@@ -183,13 +189,14 @@ $icon-pad: 13px;
 .nav--collapsed {
   .nav--collapsible-mobile {
     @include smallerScreen {
-      transform: translateY(-60px);
+      transform: translateY(-$height-topbar);
       opacity: 0;
     }
   }
   .nav__carousel {
-    transform: translateY(-60px);
+    transform: translateY(-$height-carousel);
     opacity: 0;
+
   }
   .nav__search {
     @include smallerScreen {

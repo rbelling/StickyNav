@@ -21,7 +21,7 @@ $icon-pad: 13px;
     height: $nav-height--desktop;
   }
 }
-.nav--collapsed, .nav-spacer--collapsed {
+.nav--collapsed {
   height: $height-search;
   @include widerScreen {
     height: $height-search--desktop;

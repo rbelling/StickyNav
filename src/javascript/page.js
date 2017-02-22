@@ -10,8 +10,8 @@ const THRESHOLD = 1; // 10% threshold;
     // https://jeremenichelli.github.io/2016/04/quick-introduction-to-the-intersection-observer-api/
     const onChange = (changes) => {
       const status = changes[0].intersectionRatio < THRESHOLD;
-      // nav.classList[(status) ? 'add' : 'remove']("nav--fixed");
-      // spacer.classList[(status) ? 'add' : 'remove']("nav-spacer--expanded");
+      nav.classList[(status) ? 'add' : 'remove']("nav--collapsed");
+      spacer.classList[(status) ? 'add' : 'remove']("nav-spacer--collapsed");
     };
     let observer = new IntersectionObserver(onChange, {
       threshold: THRESHOLD, //100%

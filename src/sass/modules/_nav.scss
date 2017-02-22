@@ -7,17 +7,23 @@ $nav-height: $height-topbar + $height-search + $height-carousel;
 //desktop
 $height-search--desktop: 50px;
 $height-carousel--desktop: 50px;
-$height-topbar--desktop: 55px;
-$nav-height--desktop: $height-topbar--desktop + $height-carousel--desktop;
+$nav-height--desktop: $height-search--desktop + $height-carousel--desktop;
 
-//vars
+//Misc
 $icon-pad: 13px;
 
 //Container
 .nav, .nav-spacer {
+  @extend %transition-collapse;
   height: $nav-height;
   @include widerScreen {
     height: $nav-height--desktop;
+  }
+}
+.nav--collapsed, .nav-spacer--collapsed {
+  height: $height-search;
+  @include widerScreen {
+    height: $height-search--desktop;
   }
 }
 .nav {
@@ -33,7 +39,7 @@ $icon-pad: 13px;
 .nav__content {
   background-color: $black;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   width: 100%;
   max-width: $superwide_px + px;
@@ -48,7 +54,7 @@ $icon-pad: 13px;
   display: inline-flex;
   align-items: center;
   @include widerScreen {
-    height: $height-topbar--desktop;
+    height: $height-search--desktop;
     margin-right: $icon-pad;
   }
 }
@@ -65,12 +71,14 @@ $icon-pad: 13px;
 .nav__fav {
   @include smallerScreen {
     margin-left: $icon-pad;
-    margin-right: auto;
   }
 }
 
 //Cart
 .nav__cart {
+  @include smallerScreen {
+    margin-left: $icon-pad;
+  }
   @include widerScreen {
     margin-right: 0;
   }
@@ -78,27 +86,31 @@ $icon-pad: 13px;
 
 //Logo
 .nav__logo {
-  @include smallerScreen {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
   justify-content: center;
   .logo {
     height: 30px;
   }
+  @include smallerScreen {
+    flex-grow: 1;
+  }
 }
+
 //Search
 .nav__search {
+  $offset-mobile: 8px;
   border-radius: 5px;
   width: 100%;
   min-width: 300px;
-  height: $height-search;
+  height: $height-search - $offset-mobile;
   padding: 10px;
   background-color: white;
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
+  z-index: $z-index-1;
+  @include smallerScreen {
+    margin: $offset-mobile / 2 0;
+  }
   @include widerScreen() {
     width: auto;
     $offset: 14px;
@@ -113,18 +125,19 @@ $icon-pad: 13px;
   @extend %u-center-content;
   justify-content: space-between;
   height: $height-carousel;
+  overflow: hidden;
+  color: $white;
   @include widerScreen() {
     height: $height-carousel--desktop;
     order: 7;
     max-width: span-cols(8, true);
   }
-  overflow: hidden;
 }
 .nav__category {
+  @extend %u-center-content;
   position: relative;
   height: 100%;
   margin-right: $icon-pad;
-  @extend %u-center-content;
   &.is-active {
     &:after {
       content: '';
@@ -157,5 +170,30 @@ $icon-pad: 13px;
   }
   .nav__cart {
     order: 6;
+  }
+}
+
+// Animations
+%transition-collapse {
+  transition: height .3s, transform .3s, opacity .25s;
+}
+.nav--collapsible-mobile, .nav__carousel, .nav__search {
+  @extend %transition-collapse;
+}
+.nav--collapsed {
+  .nav--collapsible-mobile {
+    @include smallerScreen {
+      transform: translateY(-60px);
+      opacity: 0;
+    }
+  }
+  .nav__carousel {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  .nav__search {
+    @include smallerScreen {
+      transform: translateY(-$height-topbar);
+    }
   }
 }

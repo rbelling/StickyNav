@@ -38,7 +38,7 @@
 }
 
 @mixin widerScreen () {
-  @media only screen and (min-width: $medium_px+1 + px) {
+  @media only screen and (min-width: $narrow_px+1 + px) {
     @content;
   }
 }

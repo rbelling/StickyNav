@@ -1,22 +1,19 @@
 //mobile
-$height-search: 50px;
-$height-carousel: 40px;
-$height-topbar: 50px;
+$height-search: 45px;
+$height-carousel: 45px;
+$height-topbar: 55px;
 $nav-height: $height-topbar + $height-search + $height-carousel;
 
 //desktop
-$height-search--desktop: 55px;
-$height-carousel--desktop: 55px;
+$height-search--desktop: 50px;
+$height-carousel--desktop: 50px;
 $height-topbar--desktop: 55px;
-$nav-height--desktop: $height-topbar--desktop + $height-search--desktop + $height-carousel--desktop;
+$nav-height--desktop: $height-topbar--desktop + $height-carousel--desktop;
 
 //vars
-$icon-pad: 10px;
+$icon-pad: 13px;
 
 //Container
-.nav-container {
-  background-color: $black;
-}
 .nav, .nav-spacer {
   height: $nav-height;
   @include widerScreen {
@@ -31,6 +28,10 @@ $icon-pad: 10px;
   padding: 0 20px;
   z-index: $z-index-1;
   color: $mineshaft;
+  width: 100%;
+}
+.nav__content {
+  background-color: $black;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -48,6 +49,7 @@ $icon-pad: 10px;
   align-items: center;
   @include widerScreen {
     height: $height-topbar--desktop;
+    margin-right: $icon-pad;
   }
 }
 
@@ -69,11 +71,12 @@ $icon-pad: 10px;
 
 //Favorites
 .nav__fav {
-  margin-left: $icon-pad;
-  margin-right: auto;
+  @include smallerScreen {
+    margin-left: $icon-pad;
+    margin-right: auto;
+  }
   @include widerScreen {
     order: 5;
-    margin-right: 0;
   }
 }
 
@@ -81,6 +84,7 @@ $icon-pad: 10px;
 .nav__cart {
   @include widerScreen {
     order: 6;
+    margin-right: 0;
   }
 }
 //Logo
@@ -102,19 +106,20 @@ $icon-pad: 10px;
 .nav__search {
   border-radius: 5px;
   width: 100%;
+  min-width: 300px;
   height: $height-search;
   padding: 10px;
   background-color: white;
-  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
   @include widerScreen() {
     width: auto;
+    $offset: 14px;
     flex-grow: 1;
-    height: $height-search--desktop;
+    height: $height-search--desktop - $offset;
     order: 2;
-    margin: 0 $icon-pad;
+    margin: $offset / 2 $icon-pad;
   }
 }
 
@@ -122,12 +127,11 @@ $icon-pad: 10px;
 .nav__carousel {
   @extend %u-center-content;
   justify-content: space-between;
-  max-width: span-cols(8, true);
   height: $height-carousel;
   @include widerScreen() {
     height: $height-carousel--desktop;
     order: 7;
-    width: 100vw;
+    max-width: span-cols(8, true);
   }
   overflow: hidden;
 }

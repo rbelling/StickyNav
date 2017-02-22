@@ -53,19 +53,11 @@ $icon-pad: 13px;
   }
 }
 
-//Account
-.nav__account {
-  @include widerScreen {
-    order: 3;
-  }
-}
-
 //Notifications
 .nav__notifications {
   display: none;
   @include widerScreen {
     display: inline-flex;
-    order: 4;
   }
 }
 
@@ -75,18 +67,15 @@ $icon-pad: 13px;
     margin-left: $icon-pad;
     margin-right: auto;
   }
-  @include widerScreen {
-    order: 5;
-  }
 }
 
 //Cart
 .nav__cart {
   @include widerScreen {
-    order: 6;
     margin-right: 0;
   }
 }
+
 //Logo
 .nav__logo {
   @include smallerScreen {
@@ -97,9 +86,6 @@ $icon-pad: 13px;
   justify-content: center;
   .logo {
     height: 30px;
-  }
-  @include widerScreen {
-    order: 1;
   }
 }
 //Search
@@ -118,7 +104,6 @@ $icon-pad: 13px;
     $offset: 14px;
     flex-grow: 1;
     height: $height-search--desktop - $offset;
-    order: 2;
     margin: $offset / 2 $icon-pad;
   }
 }
@@ -150,5 +135,27 @@ $icon-pad: 13px;
       height: 5px;
       width: 100%;
     }
+  }
+}
+
+//Responsive flexbox for desktop
+@include widerScreen {
+  .nav__logo {
+    order: 1;
+  }
+  .nav__search {
+    order: 2;
+  }
+  .nav__account {
+    order: 3;
+  }
+  .nav__notifications {
+    order: 4;
+  }
+  .nav__fav {
+    order: 5;
+  }
+  .nav__cart {
+    order: 6;
   }
 }

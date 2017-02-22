@@ -30,6 +30,7 @@ bundler.plugin('done', function (stats) {
  */
 browserSync.init({
   logFileChanges: false,
+  open: false,
   server: {
     baseDir: 'dist',
     middleware: [

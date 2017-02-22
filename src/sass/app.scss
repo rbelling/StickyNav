@@ -16,6 +16,8 @@ $nav-height: 75px;
   font-size: 35px;
   opacity: 0.85;
   top: 0;
+  //will-change: scroll-position;
+  transform: translateZ(0);
 }
 .nav--fixed {
   position: fixed;

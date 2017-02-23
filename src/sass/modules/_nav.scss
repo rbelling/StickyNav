@@ -63,9 +63,10 @@ $icon-pad: 13px;
 
 //Notifications
 .nav__notifications {
+  display: inline-flex;
   visibility: hidden;
   @include widerScreen {
-    display: inline-flex;
+    visibility: visible;
   }
 }
 

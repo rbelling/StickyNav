@@ -7,7 +7,7 @@ const THRESHOLD = 1.0;
 (() => {
   const nav = document.querySelector('.nav');
   const spacer = document.querySelector('.nav-spacer');
-  const aboveTheFoldThreshold = 30;
+  const aboveTheFoldThreshold = 90;
 
   (() => {
     // https://jeremenichelli.github.io/2016/04/quick-introduction-to-the-intersection-observer-api/
@@ -27,12 +27,11 @@ const THRESHOLD = 1.0;
   (() => {
     let prevY = window.pageYOffset;
     const pollCycle = 500;
-    const deltaScroll = 120; // The scroll position delta needs to be at least as tall as the nav to avoid annoying behaviors.
+    const deltaScroll = 50; // The scroll position delta needs to be at least as tall as the nav to avoid annoying behaviors.
 
     const detectScroll = throttle(() => {
       let curY = window.pageYOffset;
       if (curY + deltaScroll < prevY) {
-        console.log('scrollUp');
         //user has scrolled up at least `deltaScroll` since the last poll cycle - show the whole nav!
         nav.classList.remove("nav--collapsed");
         spacer.classList.remove("nav-spacer--collapsed");
@@ -40,7 +39,6 @@ const THRESHOLD = 1.0;
       else if (curY > prevY + 10 && curY > aboveTheFoldThreshold) {
         //user is scrolling down by more than 10px.
         //The second condition is to ensure that the user has scrolled at least `aboveTheFoldThreshold` into the above-the-fold area
-        console.log('scrollDown');
         nav.classList.add("nav--collapsed");
         spacer.classList.add("nav-spacer--collapsed");
       }

@@ -63,7 +63,7 @@ $icon-pad: 13px;
 
 //Notifications
 .nav__notifications {
-  display: none;
+  visibility: hidden;
   @include widerScreen {
     display: inline-flex;
   }
@@ -102,7 +102,7 @@ $icon-pad: 13px;
   $offset-mobile: 8px;
   border-radius: 5px;
   width: 100%;
-  min-width: 300px;
+  min-width: 280px;
   height: $height-search - $offset-mobile;
   padding: 10px;
   background-color: white;

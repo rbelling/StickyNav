@@ -7,7 +7,7 @@ const THRESHOLD = 1.0;
 (() => {
   const nav = document.querySelector('.nav');
   const spacer = document.querySelector('.nav-spacer');
-  const aboveTheFoldThreshold = 50;
+  const aboveTheFoldThreshold = 30;
 
   (() => {
     // https://jeremenichelli.github.io/2016/04/quick-introduction-to-the-intersection-observer-api/

@@ -185,3 +185,7 @@ Temporary Items
 ### SVN ###
 .svn/
 
+dist/8eab7754b320d3562a2deff1ca81bb6f.woff2
+dist/index.html
+dist/assets/page.js
+dist/assets/page.js.map
